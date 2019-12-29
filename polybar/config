@@ -1,3 +1,11 @@
+
+;██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗ 
+;██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═
+;
 ; vim:ft=dosini
 ;=====================================================
 ;
@@ -50,7 +58,7 @@ font-3 = Symbola:pixelsize=9;1
 
 modules-left = bspwm xwindow
 ;modules-center =
-modules-right = spotify temperature updates-arch-combined cpu memory battery date
+modules-right = spotify updates-arch-combined temperature cpu memory battery date
 
 tray-position = right
 tray-padding = 0
