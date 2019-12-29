@@ -166,3 +166,7 @@ super + shift + Return
 #dmenu
 super + shift + d
         dmenu_run  -i  -nb "#1d2023" -nf "#8fa1b3" -sb "#8fa1b3" -sf "#1d2023" -fn "NotoMonoRegular:pixelsize=16" 
+
+#screenshot
+alt + p
+        scrot -e 'mv $f ~/Pictures/screenshot/'
