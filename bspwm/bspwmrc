@@ -1,3 +1,4 @@
+#!/bin/sh
 
 #██████╗ ███████╗██████╗ ██╗    ██╗███╗   ███╗██████╗  ██████╗
 #██╔══██╗██╔════╝██╔══██╗██║    ██║████╗ ████║██╔══██╗██╔════╝
@@ -5,7 +6,6 @@
 #██╔══██╗╚════██║██╔═══╝ ██║███╗██║██║╚██╔╝██║██╔══██╗██║     
 # █████╔╝███████║██║     ╚███╔███╔╝██║ ╚═╝ ██║██║  ██║╚██████╗
 #╚═════╝ ╚══════╝╚═╝      ╚══╝╚══╝ ╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-#!/bin/sh
 
 # set root pointer
 xsetroot -cursor_name left_ptr
@@ -27,12 +27,8 @@ pkill polybar
 polybar default&
 
 # Set some bsp specific stuff
-if xrandr | grep "DP1 disconnected"
-then
-        bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
-else
-        bspc monitor DP1 -d I II III IV V VI VII VIII IX X
-fi
+bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
+bspc monitor DP1 -d I II III IV V VI VII VIII IX X
 
 
 bspc config window_gap 5
@@ -41,6 +37,8 @@ bspc config border_width 3
 bspc config split_ratio 0.55
 bspc config borderless_monocle true
 bspc config gapless_monocle true
+bspc config remove_disabled_monitors true
+bspc config merge_overlapping_monitors true
 
 bspc config pointer_modifier mod1
 bspc config pointer_action1 move
@@ -62,3 +60,6 @@ nitrogen --restore
 #autostart
 owncloud&
 blueberry-tray&
+
+#startup scripts
+        ~/scripts/spotify/launchlistener.sh
