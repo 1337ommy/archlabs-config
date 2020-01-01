@@ -58,7 +58,7 @@ font-3 = Symbola:pixelsize=9;1
 
 modules-left = bspwm xwindow
 ;modules-center =
-modules-right = spotify updates-arch-combined temperature cpu memory battery date
+modules-right = spotify previous playpause next updates-arch-combined temperature cpu memory battery date
 
 tray-position = right
 tray-padding = 0
@@ -191,6 +191,47 @@ interval = 1
 format = <label>
 exec = python ~/.config/polybar/polybar-spotify/spotify_status.py -f '{song} - {artist}' -t 50
 format-underline = ${colors.green}
+
+[module/previous]
+type = custom/script
+interval = 3
+format = "%{T3}<label>"
+format-padding = 1
+; Previous song icon
+exec = echo ""
+; Check if spotify is running before displaying the icon
+exec-if = "pgrep spotify"
+format-underline = ${colors.green}
+line-size = 1
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+
+[module/next]
+type = custom/script
+interval = 3
+format = "%{T3}<label>"
+format-padding = 1
+; Next song icon
+exec = echo ""
+; Check if spotify is running before displaying the icon
+exec-if = "pgrep spotify"
+format-underline = ${colors.green}
+line-size = 1
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+
+[module/playpause]
+type = custom/ipc
+interval = 3
+; Default
+hook-0 = echo ""
+; Playing
+hook-1 = echo ""
+; Paused
+hook-2 = echo ""
+initial = 0
+format-underline = ${colors.green}
+line-size = 1
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+
 
 [settings]
 screenchange-reload = true
