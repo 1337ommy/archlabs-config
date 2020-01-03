@@ -23,7 +23,8 @@ gray = ${xrdb:color8:#928374}
 red = ${xrdb:color9:#bf616a}
 green = ${xrdb:color10:#a3be8c}
 blue = ${xrdb:color12:#8fa1b3}
-white = ${xrdb:color15:#e1e1e1
+white = ${xrdb:color15:#e1e1e1}
+yellow = ${xrdb:color3:#ebcb8b}
 background = ${xrdb:color256:#1d2023}
 foreground = ${xrdb:color257:#e1e1e1}
 
@@ -129,10 +130,10 @@ label = %date% %time%
 type = internal/battery
 battery = BAT0
 adapter = ADP1
-full-at = 98
+full-at = 100
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.green}
+format-charging-underline = ${colors.yellow}
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${colors.blue}
@@ -159,7 +160,7 @@ animation-charging-framerate = 500
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 60
+warn-temperature = 65
 
 format = <ramp><label>
 format-underline = ${colors.blue}
