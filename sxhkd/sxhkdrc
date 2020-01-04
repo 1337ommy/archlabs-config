@@ -183,4 +183,11 @@ alt + p
 super + shift + p
         passmenu  -i  -nb "#1d2023" -nf "#8fa1b3" -sb "#8fa1b3" -sf "#1d2023" -fn "NotoMonoRegular:pixelsize=16" 
 
+#insect calculator with rofi
+alt + q 
+        rofi_run -q
+
+#rofi window selector
+alt + Tab
+        rofi_run -w
 
