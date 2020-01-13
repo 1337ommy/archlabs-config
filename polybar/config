@@ -25,12 +25,10 @@ green = ${xrdb:color10:#a3be8c}
 blue = ${xrdb:color12:#8fa1b3}
 white = ${xrdb:color15:#e1e1e1}
 yellow = ${xrdb:color3:#ebcb8b}
-background = ${xrdb:color256:#1d2023}
+background = ${xrdb:color256:#1c2023}
 foreground = ${xrdb:color257:#e1e1e1}
 
 [bar/default]
-;monitor = ${env:MONITOR:LVDS-1}
-;monitor = ${env:MONITOR:HDMI-1}
 enable-ipc = true
 width = 100%
 height = 24
@@ -69,6 +67,44 @@ wm-restack = bspwm
 scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
 
+[bar/minimal]
+enable-ipc = true
+width = 100%
+height = 24
+fixed-center = false
+monitor = eDP1
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = {$xrdb:red}
+
+border-size = 0
+border-color = ${colors.white}
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = mono:pixelsize=9;1
+font-1 = Inconsolata Nerd Font:size=8;1
+font-2 = Noto Color Emoji:scale=10:style=Regular;2
+font-3 = Symbola:pixelsize=9;1
+
+
+modules-left = bspwm xwindow
+;modules-center =
+;modules-right =
+
+wm-restack = bspwm
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+
 
 [module/xwindow]
 type = internal/xwindow
@@ -81,7 +117,7 @@ type = internal/bspwm
 label-focused = %name%
 label-focused-foreground = ${colors.black}
 label-focused-background = ${colors.blue}
-label-focused-underline= ${colors.white}
+label-focused-underline= ${colors.blue}
 label-focused-padding = 1
 
 label-occupied = %name%
@@ -160,7 +196,7 @@ animation-charging-framerate = 500
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 65
+warn-temperature = 70
 
 format = <ramp><label>
 format-underline = ${colors.blue}
