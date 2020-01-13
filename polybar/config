@@ -97,7 +97,7 @@ font-3 = Symbola:pixelsize=9;1
 
 modules-left = bspwm xwindow
 ;modules-center =
-;modules-right =
+modules-right = spotify previous playpause next 
 
 wm-restack = bspwm
 
@@ -264,7 +264,7 @@ hook-0 = echo ""
 hook-1 = echo ""
 ; Paused
 hook-2 = echo ""
-initial = 0
+initial = 1
 format-underline = ${colors.green}
 line-size = 1
 click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
