@@ -11,11 +11,16 @@
 xsetroot -cursor_name left_ptr
 
 #resolution
-if xrandr | grep "DP1 disconnected"
+
+if xrandr | grep "HDMI1 connected"
 then
-        xrandr --output eDP1 --mode 1920x1080
+        xrandr --output HDMI1 --mode 2560x1080 --primary --output eDP1 --mode 1920x1080 --below HDMI1
+
+elif xrandr | grep "DP1 disconnected" 
+then
+        xrandr --output eDP1 --mode 1920x1080 --primary
 else
-        xrandr --output DP1 --mode 2560x1080 --output eDP1 --off
+        xrandr --output DP1 --mode 2560x1080 --primary --output eDP1 --off 
 fi
 
 # key bindings
@@ -26,8 +31,17 @@ sxhkd&
 pkill polybar
 polybar default&
 
+if xrandr | grep "HDMI1 connected"
+then
+        polybar minimal&
+fi
+
 # Set some bsp specific stuff
-if xrandr | grep "DP1 disconnected"
+if xrandr | grep "HDMI1 connected"
+then
+        bspc monitor eDP1 -d VIII IX X
+        bspc monitor HDMI1 -d I II III IV V VI VII
+elif xrandr | grep "DP1 disconnected"
 then
         bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
 else
