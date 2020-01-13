@@ -39,8 +39,8 @@ fi
 # Set some bsp specific stuff
 if xrandr | grep "HDMI1 connected"
 then
-        bspc monitor eDP1 -d VIII IX X
-        bspc monitor HDMI1 -d I II III IV V VI VII
+        bspc monitor eDP1 -d VII VIII IX X
+        bspc monitor HDMI1 -d I II III IV V VI 
 elif xrandr | grep "DP1 disconnected"
 then
         bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
@@ -74,6 +74,7 @@ bspc rule -a Emacs  state=tiled
 nitrogen --restore
 
 #autostart
+pkill owncloud
 owncloud&
 blueberry-tray&
 
