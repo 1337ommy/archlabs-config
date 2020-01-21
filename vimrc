@@ -33,8 +33,6 @@ Plugin 'mhinz/vim-startify'
 
 Plugin 'Valloric/YouCompleteMe'
 
-Plugin 'kien/ctrlp.vim'
-
 Plugin 'ervandew/supertab'
 
 Plugin 'Raimondi/delimitMate'
@@ -46,8 +44,6 @@ Plugin 'dense-analysis/ale'
 Plugin '907th/vim-auto-save'
 
 Plugin 'octol/vim-cpp-enhanced-highlight'
-
-Plugin 'sainnhe/edge'
 
 Plugin 'sheerun/vim-polyglot'
 
@@ -67,6 +63,11 @@ Plugin 'Kody-Quintana/bspwm_border_color'
 
 Plugin 'amerlyq/vim-focus-autocmd'
 
+Plugin 'Yggdroot/indentLine'
+
+Plugin 'ryanoasis/vim-devicons'
+
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -92,8 +93,9 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 set relativenumber
 set number
 syntax enable
-set tabstop=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set showcmd
 filetype indent on
@@ -116,6 +118,8 @@ set splitbelow
 set t_Co=256
 set nowrap
 set cursorline
+set encoding=UTF-8
+
 "keybindings
 
 "Leader key <space> 
@@ -165,7 +169,7 @@ xmap L $
 nnoremap S :w<cr>
 nmap <Leader>q :q<CR>
 nmap <Leader>s :x<CR>
-
+imap <leader><space> <Esc>la
 
 "vim-auto-save
 let g:auto_save = 1  " enable AutoSave on Vim startup
@@ -195,7 +199,7 @@ let g:lightline = {
    \   'right': [['filetype'], [ 'lineinfo' ], ['percent'] ]
    \ },
    \ 'component': {
-   \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
+   \   'readonly': '%{&filetype=="help"?"":&readonly?"∢":""}',
    \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
    \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
    \ },
@@ -209,7 +213,7 @@ let g:lightline = {
    \ }
  
 "latex-box
-let g:LatexBox_complete_inlineMath=0
+let g:LatexBox_complete_inlineMath=1
 let g:LatexBox_eq_env_patterns=0
 let g:LatexBox_quickfix=2
 let g:LatexBox_latexmk_async=0
@@ -235,6 +239,12 @@ let g:multi_cursor_next_key            = '<A-n>'
 let g:multi_cursor_prev_key            = '<A-p>'
 let g:multi_cursor_skip_key            = '<A-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
+
+"indentLine 
+let g:indentLine_char = '|'
+
+"YouCompleteme extra config
+ let g:ycm_global_ycm_extra_conf = '$HOME/.vim/ycm_extra_conf/ycm_extra_conf.py'
 
 "startify
 let g:startify_custom_header = [
