@@ -45,8 +45,6 @@ Plugin '907th/vim-auto-save'
 
 Plugin 'octol/vim-cpp-enhanced-highlight'
 
-Plugin 'sheerun/vim-polyglot'
-
 Plugin 'LaTeX-Box-Team/LaTeX-Box', { 'for': 'tex' }
 
 Plugin 'ekiim/vim-mathpix'
@@ -68,6 +66,10 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'ryanoasis/vim-devicons'
 
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+Plugin 'ctrlpvim/ctrlp.vim'
+
+Plugin 'matze/vim-tex-fold'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -169,7 +171,8 @@ xmap L $
 nnoremap S :w<cr>
 nmap <Leader>q :q<CR>
 nmap <Leader>s :x<CR>
-imap <leader><space> <Esc>la
+imap kk <Esc>la
+nmap <leader>f za
 
 "vim-auto-save
 let g:auto_save = 1  " enable AutoSave on Vim startup
@@ -213,7 +216,7 @@ let g:lightline = {
    \ }
  
 "latex-box
-let g:LatexBox_complete_inlineMath=1
+let g:LatexBox_complete_inlineMath=0
 let g:LatexBox_eq_env_patterns=0
 let g:LatexBox_quickfix=2
 let g:LatexBox_latexmk_async=0
@@ -239,6 +242,10 @@ let g:multi_cursor_next_key            = '<A-n>'
 let g:multi_cursor_prev_key            = '<A-p>'
 let g:multi_cursor_skip_key            = '<A-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
+
+"ctrl p
+let g:ctrlp_map = '<c-p>'
+let g:webdevicons_enable_ctrlp = 1
 
 "indentLine 
 let g:indentLine_char = '|'
