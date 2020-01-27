@@ -165,7 +165,7 @@ alt + a
 
 #vim
 alt + v
-        urxvt -e vim
+        kitty -e v
 
 #fmenu
 super + shift + Return
@@ -191,3 +191,6 @@ alt + q
 alt + Tab
         rofi_run -w
 
+#ranger
+alt + r
+        kitty -e ranger
