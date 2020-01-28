@@ -12,10 +12,6 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 call plug#begin()
 
-Plug 'VundleVim/Vundle.vim'
-
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-
 Plug 'itchyny/lightline.vim'
 
 Plug 'tpope/vim-surround'
@@ -23,8 +19,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 
 Plug 'tpope/vim-fugitive'
-
-Plug 'Raimondi/delimitMate'
 
 Plug 'dense-analysis/ale'
 
@@ -56,11 +50,15 @@ Plug 'lervag/vimtex'
 
 Plug 'honza/vim-snippets'
 
+Plug 'ryanoasis/vim-devicons'
+
+Plug 'voldikss/vim-floaterm'
+
 call plug#end()            " required
 
 
+autocmd FileType tex let b:coc_pairs = [["$", "$"]]
 
-let g:livepreview_previewer = 'zathura' "vim-latex-preview 
 set laststatus=2 "lightline.vim
 
 "Vim settings
@@ -92,8 +90,9 @@ set splitbelow
 set t_Co=256
 set nowrap
 set cursorline
-set encoding=UTF-8
 
+hi visual ctermfg=black ctermbg=yellow gui=none
+hi Directory ctermfg=green ctermbg=black gui=none
 "keybindings
 
 "Leader key <space> 
@@ -149,6 +148,14 @@ nmap <leader>f za
 "vim-auto-save
 let g:auto_save = 1  " enable AutoSave on Vim startup
 
+"floaterm
+
+let g:floaterm_keymap_toggle = '<leader>t'
+
+"indentLine
+let g:indentLine_faster     = 1
+let g:indentLine_setConceal = 0
+
 "ferm.vim
 nmap <silent> <C-o> :Fern . -drawer<CR>
 
@@ -159,12 +166,8 @@ nmap <silent> <C-w> <Plug>(ale_toggle)
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-"lightline
-let g:lightline = {
-     \ 'colorscheme': 'nord',
-     \ }
-
+let g:WebDevIconsOS = 'Darwin'
+let g:webdevicons_enable = 1
 let g:lightline = {
    \ 'colorscheme': 'nord',
    \ 'active': {
@@ -175,7 +178,7 @@ let g:lightline = {
    \ 'component': {
    \   'readonly': '%{&filetype=="help"?"":&readonly?"∢":""}',
    \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-   \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+   \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}',
    \ },
    \ 'component_visible_condition': {
    \   'readonly': '(&filetype!="help"&& &readonly)',
@@ -185,12 +188,11 @@ let g:lightline = {
    \ 'separator': { 'left': ' ', 'right': ' ' },
    \ 'subseparator': { 'left': ' ', 'right': ' ' },
    \ 'component_function': {
-	 \   'cocstatus': 'coc#status'
+	 \   'cocstatus': 'coc#status',
 	 \},
    \ }
  
   autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-
 
 "Nord
 let g:nord_cursor_line_number_background = 1
@@ -222,7 +224,8 @@ let g:indentLine_char = '|'
  let g:ycm_global_ycm_extra_conf = '$HOME/.config/nvim/ycm_extra_conf/ycm_extra_conf.py'
 
  "tagbar
- nmap <silent> <C-i> :TagbarToggle<CR>
+ nmap <silent> <C-t> :TagbarToggle<CR>
+let g:tagbar_compact = 1
 
 " if hidden is not set, TextEdit might fail.
 set hidden
