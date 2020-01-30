@@ -57,7 +57,7 @@ font-3 = Symbola:pixelsize=9;1
 
 modules-left = bspwm xwindow
 ;modules-center =
-modules-right = spotify previous playpause next eth updates-arch-combined temperature cpu memory battery date
+modules-right = spotify previous playpause next eth eth2 updates-arch-combined temperature cpu memory battery date
 
 tray-position = right
 tray-padding = 0
@@ -277,13 +277,25 @@ interval		= 1
 format-connected	= <label-connected>
 format-disconnected	= <label-disconnected>
 
-label-connected		=%upspeed% / %downspeed%
+label-connected		=%upspeed%
 label-disconnected	=
 
-format-connected-prefix = Up/Down:
+format-connected-prefix = Up:
 format-connected-prefix-foreground = ${colors.gray}
 
+[module/eth2]
+type			= internal/network
+interface		= wlan0
+interval		= 1
 
+format-connected	= <label-connected>
+format-disconnected	= <label-disconnected>
+
+label-connected		=%downspeed%
+label-disconnected	=
+
+format-connected-prefix = Down:
+format-connected-prefix-foreground = ${colors.gray}
 
 
 [settings]
