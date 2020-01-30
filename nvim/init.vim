@@ -54,6 +54,8 @@ Plug 'ryanoasis/vim-devicons'
 
 Plug 'voldikss/vim-floaterm'
 
+Plug 'yuttie/comfortable-motion.vim'
+
 call plug#end()            " required
 
 
@@ -93,6 +95,7 @@ set cursorline
 
 hi visual ctermfg=black ctermbg=yellow gui=none
 hi Directory ctermfg=green ctermbg=black gui=none
+
 "keybindings
 
 "Leader key <space> 
@@ -351,3 +354,18 @@ let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
+
+"smooth scroll
+let g:comfortable_motion_scroll_down_key = "j"
+let g:comfortable_motion_scroll_up_key = "k"
+noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
+noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+nnoremap <silent> J :call comfortable_motion#flick(100)<CR>
+nnoremap <silent> K :call comfortable_motion#flick(-100)<CR>
