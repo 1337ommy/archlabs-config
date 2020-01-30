@@ -277,7 +277,7 @@ interval		= 1
 format-connected	= <label-connected>
 format-disconnected	= <label-disconnected>
 
-label-connected		=%downspeed% / %upspeed%
+label-connected		=%upspeed% / %downspeed%
 label-disconnected	=
 
 format-connected-prefix = Up/Down:
