@@ -56,6 +56,12 @@ Plug 'voldikss/vim-floaterm'
 
 Plug 'yuttie/comfortable-motion.vim'
 
+Plug 'arakashic/chromatica.nvim'
+
+Plug 'liuchengxu/vim-clap'
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+
 call plug#end()            " required
 
 
@@ -90,9 +96,10 @@ set noswapfile
 set splitright
 set splitbelow
 set t_Co=256
-set nowrap
+set wrap
 set cursorline
 
+"colors
 hi visual ctermfg=black ctermbg=yellow gui=none
 hi Directory ctermfg=green ctermbg=black gui=none
 
@@ -101,18 +108,14 @@ hi Directory ctermfg=green ctermbg=black gui=none
 "Leader key <space> 
 let mapleader = "\<space>"
 "arrowkeys
- noremap  <Up> ""
- noremap! <Up> <Esc>
- noremap  <Down> ""
- noremap! <Down> <Esc>
- noremap  <Left> ""
- noremap! <Left> <Esc>
- noremap  <Right> ""
- noremap! <Right> <Esc>
- noremap  <PageUp> ""
- noremap! <PageUp> <Esc>
- noremap  <PageDown> ""
- noremap! <PageDown> <Esc>
+ noremap  <Up> <nop>
+ noremap  <Down> <nop>
+ noremap  <Left> <nop>
+ noremap  <Right> <nop>
+ noremap  <PageUp> <nop>
+ noremap  <PageDown> <nop>
+ onoremap <Up> <C-p>
+ onoremap <Down> <C-n>
 
 " Go to tab by number
 noremap <leader>1 1gt
@@ -133,26 +136,27 @@ nnoremap <leader>l <C-W><C-L>
 nnoremap <leader>h <C-W><C-H>
 
  "remap
-imap jj <Esc>
-nmap J <C-d>
-nmap K  <C-u>
-nmap H ^
-nmap L $
-xmap J <C-d>
-xmap K  <C-u>
-xmap H ^
-xmap L $
+inoremap jk <Esc>
+nnoremap J <C-d>
+nnoremap K  <C-u>
+nnoremap H ^
+nnoremap L $
+xnoremap J <C-d>
+xnoremap K  <C-u>
+xnoremap H ^
+xnoremap L $
 nnoremap S :w<cr>
-nmap <Leader>q :q<CR>
-nmap <Leader>s :x<CR>
-imap kk <Esc>la
-nmap <leader>f za
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>s :x<CR>
+inoremap kk <Esc>la
+nnoremap <leader>f za
+nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 "vim-auto-save
 let g:auto_save = 1  " enable AutoSave on Vim startup
 
 "floaterm
-
 let g:floaterm_keymap_toggle = '<leader>t'
 
 "indentLine
@@ -169,14 +173,13 @@ nmap <silent> <C-w> <Plug>(ale_toggle)
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-let g:WebDevIconsOS = 'Darwin'
 let g:webdevicons_enable = 1
 let g:lightline = {
    \ 'colorscheme': 'nord',
    \ 'active': {
    \   'left': [ ['mode', 'paste'],
    \             ['cocstatus', 'fugitive', 'readonly', 'filename', 'modified'] ],
-   \   'right': [['filetype'], [ 'lineinfo' ], ['percent'] ]
+   \   'right': [['file'], ['fileformat'], [ 'lineinfo' ], ['percent'] ]
    \ },
    \ 'component': {
    \   'readonly': '%{&filetype=="help"?"":&readonly?"∢":""}',
@@ -192,10 +195,19 @@ let g:lightline = {
    \ 'subseparator': { 'left': ' ', 'right': ' ' },
    \ 'component_function': {
 	 \   'cocstatus': 'coc#status',
+   \   'file': 'MyFiletype',
+   \   'fileformat': 'MyFileformat',
 	 \},
    \ }
  
   autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
 
 "Nord
 let g:nord_cursor_line_number_background = 1
@@ -223,9 +235,6 @@ let g:ctrlp_map = '<c-p>'
 "indentLine 
 let g:indentLine_char = '|'
 
-"YouCompleteme extra config
- let g:ycm_global_ycm_extra_conf = '$HOME/.config/nvim/ycm_extra_conf/ycm_extra_conf.py'
-
  "tagbar
  nmap <silent> <C-t> :TagbarToggle<CR>
 let g:tagbar_compact = 1
@@ -237,17 +246,11 @@ set hidden
 set nobackup
 set nowritebackup
 
-" Better display for messages
-set cmdheight=2
-
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -365,7 +368,13 @@ nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<C
 "smooth scroll
 let g:comfortable_motion_scroll_down_key = "j"
 let g:comfortable_motion_scroll_up_key = "k"
-noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
-noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
 nnoremap <silent> J :call comfortable_motion#flick(100)<CR>
 nnoremap <silent> K :call comfortable_motion#flick(-100)<CR>
+
+"chromatica
+let g:chromatica#responsive_mode=1
+let g:chromatica#enable_at_startup=1
+
+
+"coc highlight
+autocmd CursorHold * silent call CocActionAsync('highlight')
