@@ -9,9 +9,12 @@
 source ~/.zplug/init.zsh
 
 #Plugins
+zplug "zplug/zplug", hook-build:"zplug --self-manage"
 zplug "softmoth/zsh-vim-mode"
 zplug "plugins/colored-man-pages",   from:oh-my-zsh
+zplug "plugins/command-not-found",   from:oh-my-zsh
 zplug "MichaelAquilina/zsh-auto-notify"
+zplug "b4b4r07/enhancd", use:enhancd.sh
 
 #Completion and Highlighting
 zplug "zsh-users/zsh-completions",              defer:0
@@ -33,15 +36,44 @@ fi
 # source plugins and add commands to $PATH
 zplug load
 
+#history
+HISTFILE=~/.zsh/zsh_history
+HISTSIZE=5000
+SAVEHIST=5000
+setopt appendhistory
+
 # Personal configuration
 
 #theme
 SPACESHIP_VI_MODE_SHOW=false
+SPACESHIP_DIR_TRUNC=0
+SPACESHIP_HG_SHOW=false
+SPACESHIP_HG_BRANCH_SHOW=false
+SPACESHIP_HG_STATUS_SHOW=false
+SPACESHIP_ELM_SHOW=false
+SPACESHIP_ELIXIR_SHOW=false
+SPACESHIP_XCODE_SHOW_LOCAL=false
+SPACESHIP_SWIFT_SHOW_LOCAL=false
+SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_DOCKER_CONTEXT_SHOW=false
+SPACESHIP_VENV_SHOW=false
+SPACESHIP_CONDA_SHOW=false
+SPACESHIP_PYENV_SHOW=false
+SPACESHIP_DOTNET_SHOW=false
+SPACESHIP_EMBER_SHOW=false
+SPACESHIP_KUBECTL_SHOW=false
+SPACESHIP_KUBECTL_VERSION_SHOW=false
+SPACESHIP_KUBECONTEXT_SHOW=false
+SPACESHIP_TERRAFORM_SHOW=false
+SPACESHIP_BATTERY_THRESHOLD=25
+
+
+
 
 #Vim-mode
-MODE_CURSOR_VICMD="#96b5b4 block"
-MODE_CURSOR_VIINS="#bf616a steady bar"
-MODE_CURSOR_SEARCH="#a3b38c steady underline"
+MODE_CURSOR_VICMD="block"
+MODE_CURSOR_VIINS="steady bar"
+MODE_CURSOR_SEARCH="steady underline"
 
 MODE_INDICATOR_VIINS='%F{15}[%F{9}INSERT%F{15}]%f'
 MODE_INDICATOR_VICMD='%F{15}[%F{2}NORMAL%F{15}]%f'
@@ -52,12 +84,9 @@ MODE_INDICATOR_VLINE='%F{15}[%F{yellow}V-LINE%F{15}]%f'
 
 RPROMPT='${MODE_INDICATOR_PROMPT}'
 setopt TRANSIENT_RPROMPT
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
+
+# Preferred editor
    export EDITOR='nvim'
-else
-   export EDITOR='vim'
- fi
 
 # Compilation flags
  export ARCHFLAGS="-arch x86_64"
@@ -89,7 +118,8 @@ alias ..='cd ..'
 export BSPWM_VIM_INSERT=#bf616a
 export BSPWM_VIM_NORMAL=#96b5b4
 
-#keybinding autosuggestion
+#autosuggestion
 bindkey '^l' autosuggest-accept
 
+#autostart
 pfetch
