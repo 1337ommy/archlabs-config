@@ -6,10 +6,6 @@
 "██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║
 "╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
 call plug#begin()
 
 Plug 'itchyny/lightline.vim'
@@ -19,6 +15,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 
 Plug 'tpope/vim-fugitive'
+
+Plug 'tpope/vim-commentary'
 
 Plug 'dense-analysis/ale'
 
@@ -62,7 +60,11 @@ Plug 'liuchengxu/vim-clap'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
-call plug#end()            " required
+Plug 'ptzz/lf.vim'
+
+Plug 'rbgrouleff/bclose.vim'
+
+call plug#end()           
 
 
 autocmd FileType tex let b:coc_pairs = [["$", "$"]]
@@ -236,7 +238,7 @@ let g:ctrlp_map = '<c-p>'
 let g:indentLine_char = '|'
 
  "tagbar
- nmap <silent> <C-t> :TagbarToggle<CR>
+nmap <silent> <C-t> :TagbarToggle<CR>
 let g:tagbar_compact = 1
 
 " if hidden is not set, TextEdit might fail.
