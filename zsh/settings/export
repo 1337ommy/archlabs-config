@@ -1,0 +1,12 @@
+#Export variables
+
+# Preferred editor
+export EDITOR='nvim'
+
+# Compilation flags
+export ARCHFLAGS="-arch x86_64"
+
+#bspwm_border_vim
+export BSPWM_VIM_INSERT=#bf616a
+export BSPWM_VIM_NORMAL=#96b5b4
+

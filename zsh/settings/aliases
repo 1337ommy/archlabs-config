@@ -1,0 +1,24 @@
+#aliases
+
+alias v="nvim"
+alias s="sudo"
+alias zat='zathura'
+alias untar='tar -zxvf'
+alias vs='nvim "+set si"'
+alias edit='nvim'
+alias root='sudo -i'
+alias su='sudo -i'
+alias cat="bat"
+alias sv="sudoedit"
+alias sv='sudo v'
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+alias upall="baph -u -N"
+alias blth="sudo systemctl start bluetooth"
+alias pic="vimiv"
+alias torrent="transmission-cli"
+alias kit="kitty +kitten"
+alias uninstall="sudo pacman -R"
+alias install="sudo pacman -S"
+alias ls="exa --header --long --git"
+alias ..='cd ..'
+
