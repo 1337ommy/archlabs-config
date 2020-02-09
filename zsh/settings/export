@@ -1,7 +1,12 @@
 #Export variables
 
-# Preferred editor
-export EDITOR='nvim'
+# Preferred applications
+export VISUAL="nvim"
+export EDITOR="nvim"
+export TERMINAL="st"
+export BROWSER="firefox"
+export READER="zathura"
+export FILE="pcmanfm"
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
@@ -10,3 +15,5 @@ export ARCHFLAGS="-arch x86_64"
 export BSPWM_VIM_INSERT=#bf616a
 export BSPWM_VIM_NORMAL=#96b5b4
 
+#pfetch
+export PF_INFO="ascii title os kernel pkgs memory wm shell editor"

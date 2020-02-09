@@ -52,3 +52,6 @@ nnoremap <silent> K :call comfortable_motion#flick(-100)<CR>
 let g:chromatica#responsive_mode=1
 let g:chromatica#enable_at_startup=1
 
+"lf
+let g:lf_map_keys = 0
+map <leader>lf :Lf<CR>
