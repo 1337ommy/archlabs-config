@@ -151,6 +151,16 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
     xbacklight -10
 
+#audip control keys
+XF86AudioPlay
+    playerctl play-pause
+XF86AudioNext
+    playerctl next
+XF86AudioPrev
+    playerctl previous
+XF86AudioStop
+    playerctl stop
+
 #
 #Applications
 #
@@ -163,9 +173,6 @@ alt + s
 alt + a
         pavucontrol
 
-#vim
-alt + v
-        kitty -e v
 
 #fmenu
 super + shift + Return
@@ -193,4 +200,4 @@ alt + Tab
 
 #ranger
 alt + r
-        kitty -e ranger
+        st -e lf
