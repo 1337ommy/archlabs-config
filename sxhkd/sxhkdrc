@@ -176,18 +176,18 @@ alt + a
 
 #fmenu
 super + shift + Return
-        ~/scripts/fmenu.sh
+        fmenu
 
 #dmenu
 super + shift + d
         dmenu_run  -i  -nb "#1d2023" -nf "#8fa1b3" -sb "#8fa1b3" -sf "#1d2023" -fn "NotoMonoRegular:pixelsize=16" 
 
 #screenshot
-alt + p
+super + shift + p
         scrot -e 'mv $f ~/Pictures/screenshot/'
 
 #passmenu
-super + shift + p
+alt + p
         passmenu  -i  -nb "#1d2023" -nf "#8fa1b3" -sb "#8fa1b3" -sf "#1d2023" -fn "NotoMonoRegular:pixelsize=16" 
 
 #insect calculator with rofi
@@ -201,3 +201,11 @@ alt + Tab
 #ranger
 alt + r
         st -e lf
+
+#rofi blth
+alt + b 
+		rofi_blth
+
+#rofi network
+alt + n
+		nmcli-rofi
