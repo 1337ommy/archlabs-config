@@ -11,18 +11,18 @@ set updatetime=300
 set shortmess+=c
 
 "trigger completion
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-let g:coc_snippet_next = '<tab>'
+" Use enter to accept snippet expansion
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -69,10 +69,10 @@ imap <C-l> <Plug>(coc-snippets-expand)
 vmap <C-j> <Plug>(coc-snippets-select)
 
 "jump to next placeholder
-let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_next = '<TAB>'
 
 "jump to previous placeholder
-let g:coc_snippet_prev = '<c-k>'
+let g:coc_snippet_prev = '<S-TAB>'
 
 " expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
